@@ -1,38 +1,28 @@
-const mongoose = require('mongoose')
-const express = require('express')
+                const mongoose = require('mongoose')
+                const express = require('express')
 
-const app = express()
+                const app = express()
 
-//Middleware
-app.use(express.json())
+                
+                app.use(express.json())
 
-const db = 'mongodb+srv://bashar:7XTV55KW@cluster0-5zahv.mongodb.net/todolist?retryWrites=true&w=majority'
+                            const db = 'mongodb+srv://bashar:7XTV55KW@cluster0-5zahv.mongodb.net/todolist?retryWrites=true&w=majority'
 
-mongoose
-    .connect(db, {
-        useCreateIndex: true,
-        useUnifiedTopology: true,
-        useNewUrlParser: true
-    })
-    .then(() => console.log('Connected to MongoDB Database...'))
+                mongoose
+                    .connect(db, {
+                        useCreateIndex: true,
+                        useUnifiedTopology: true,
+                        useNewUrlParser: true
+                    })
+                    .then(() => console.log('Connected to MongoDB Database...'))
     .catch(err => console.log('Database connection error : '+err))
 
-// Use routes
+
 
 app.use('/api/todo', require('./routes/todo'))
 
-//Listen to port
 
-if (process.env.NODE_ENV === 'production') {
-    // Set static folder
-    app.use(express.static('client/build'));
-  
-    app.get('*', (req, res) => {
-      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    });
-}
-
-const port = process.env.PORT || 5000;
+`        = process.env.PORT || 5000;
 
 app.listen(port, () => {
     console.log('Server is started on Port'+port)
